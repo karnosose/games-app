@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import uuid from 'react-uuid';
@@ -18,19 +18,33 @@ function Sidebar(props) {
 
   const classes = useStyles();
 
+  const [searchedGame, setSearchedGame] = useState('')
+
+  const handleSearchChange = e => {
+    setSearchedGame(e.target.value)
+  }
+
   return (
     <Paper className={classes.root}>
         <MenuList>
+            <form action={`/search/${searchedGame}`}>
             <MenuItem className={classes.searchbar}>
                 <InputBase
                     className={classes.input}
                     placeholder="Search Games"
                     inputProps={{ 'aria-label': 'search games' }}
+                    value={searchedGame}
+                    onChange={e => handleSearchChange(e)}
                 />
-                <IconButton type="submit" className={classes.iconButton} aria-label="search">
-                    <SearchIcon />
+                <IconButton 
+                    type="submit" 
+                    className={classes.iconButton} 
+                    aria-label="search"
+                    >
+                    <SearchIcon  />
                 </IconButton>
             </MenuItem >
+            </form>
             {props.categories.map(category => (
                  <Link 
                     to={category.nameKey === 'All games' ? '/' : `/category/${category.nameKey}`} 

@@ -14,3 +14,23 @@ export const setGamesData = (data, category) => (
         }
     }
 )
+
+export const setFavoritesData = (data, favorites) => (
+    {
+        type: ACTION_TYPES.SET_FAVORITES_DATA,
+        payload: {
+            data,
+            favorites
+        }
+    }
+)
+
+export const setSearchedData = (data, search) => (
+    {
+        type: ACTION_TYPES.SET_SEARCHED_DATA,
+        payload: {
+            data,
+            search
+        }
+    }
+)

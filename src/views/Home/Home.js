@@ -1,5 +1,4 @@
 import React from 'react'
-import {useLocation} from 'react-router-dom'
 import uuid from 'react-uuid'
 import {connect} from 'react-redux';
 import {useStyles} from './Home.style';
@@ -7,21 +6,19 @@ import GameItem from '../../components/GemeItem'
 
 function Home (props) {
     
-    const location = useLocation().pathname;
     const classes = useStyles();
 
     return (
         <div className={classes.homeContainer}>
             {!props.isLoading &&
                 <>
-                    <div className={props.games.large.length > 1 ? classes.large : props.games.large.length === 1 ? classes.singlelarge : ''}>
+                    <div className={props.games.large.length > 1 ? classes.large : classes.singlelarge}>
                         {props.games.large.map(game => (
                             <GameItem
                                 key={uuid()}
                                 game={game} 
                                 isLarge={true}
                                 wrapperClass={props.games.large.length === 1 ? classes.singlelargeWrapper : classes.largeImgWrapper}
-                                view={location}
                             />
                         ))}
                     </div>
@@ -33,8 +30,6 @@ function Home (props) {
                                 game={game} 
                                 isLarge={false}
                                 wrapperClass={classes.smallImgWrapper}
-                                view={location}
-
                             />
                         ))}
                     </div>

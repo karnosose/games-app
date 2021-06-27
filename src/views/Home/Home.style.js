@@ -57,6 +57,9 @@ export const useStyles = makeStyles({
         left:6,
         fontSize: 12
     },
+    singlelarge: {
+        position: 'relative'
+    },
     smallImgWrapper: {
         position: 'relative',
         maxWidth:'25%',

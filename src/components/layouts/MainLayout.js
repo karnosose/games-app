@@ -4,7 +4,7 @@ import {useParams, useLocation } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 
 import Sidebar from '../Sidebar'
-import {gamesDataLoading, setGamesData, setFavoritesData} from '../../store/actions/gamesList'
+import {gamesDataLoading, setGamesData, setFavoritesData, setSearchedData} from '../../store/actions/gamesList'
 import {setFavorites} from '../../store/actions/favorites'
 
 function MainLayout (props) {
@@ -13,7 +13,20 @@ function MainLayout (props) {
     
     const location = useLocation();
 
+     //read favorites from localstorage and save it in store
+     useEffect(_ => {
+        let favorites = localStorage.getItem('favorites');
+        favorites = favorites ? JSON.parse(favorites) : [];
+        props.setFavorites(favorites);
+    },[])
+
+    //save favorites to the local storage each time they change
+    useEffect(_ => {
+        localStorage.setItem('favorites', JSON.stringify(props.favorites.gameIds))
+    }, [props.favorites.gameIds])
+
     useEffect(()=>{
+        console.log(props.favorites.gameIds)
         //getting games list from json file and storing in store
         const getGamesList = () => {
             fetch(`${window.location.origin}/gamesList.json`, {
@@ -25,8 +38,8 @@ function MainLayout (props) {
             .then(res => res.json())
             .then(res => {
                 if(search){
-                    props.setGamesData(res, search)
-                } else if (location.pathname === '/favorites'){
+                    props.setSearchedData(res, search)
+                } else if (location.pathname === '/favorites'){                    
                     props.setFavoritesData(res, props.favorites)
                 } else {
                     props.setGamesData(res, category)
@@ -36,19 +49,7 @@ function MainLayout (props) {
     
         }
         getGamesList()
-    }, [category, props.favorites, search])
-
-    //read favorites from localstorage and save it in store
-    useEffect(_ => {
-        let favorites = localStorage.getItem('favorites');
-        favorites = favorites ? JSON.parse(favorites) : [];
-        props.setFavorites(favorites);
-    },[])
-
-    //save favorites to the local storage each time they change
-    useEffect(_ => {
-            localStorage.setItem('favorites', JSON.stringify(props.favorites.gameIds))
-    }, [props.favorites.gameIds])
+    }, [location.pathname, props.favorites])
 
     return (
         <Grid container >
@@ -67,7 +68,8 @@ const mapDispatchToProps = dispatch => ({
     gamesDataLoading: () => dispatch(gamesDataLoading),
     setGamesData: (data, category) => dispatch(setGamesData(data, category)),
     setFavorites: data => dispatch(setFavorites(data)),
-    setFavoritesData: (data, favorites) => dispatch(setFavoritesData(data, favorites))
+    setFavoritesData: (data, favorites) => dispatch(setFavoritesData(data, favorites)).favorites,
+    setSearchedData: (data, search) => dispatch(setSearchedData(data, search))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(MainLayout);

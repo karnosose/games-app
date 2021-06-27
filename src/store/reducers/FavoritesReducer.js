@@ -1,7 +1,7 @@
 import {ACTION_TYPES} from '../actionTypes'
 
 export const initialState = {    
-    gameIds: []
+    gameIds: [],
 };
 
 export const FavoritesReducer = (state = initialState, action) => {
