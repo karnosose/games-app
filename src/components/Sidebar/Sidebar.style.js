@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 export const useStyles = makeStyles({
     root: {
         width: 300,
-        height: window.innerHeight,
+        height: 'fit-content',
         marginTop:20,
         '@media only screen and (max-width:600px)': {
           width: '150px',

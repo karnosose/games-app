@@ -3,7 +3,7 @@ import {ACTION_TYPES} from '../actionTypes'
 export const initialState = {
     is_loading: true,
     games: [],
-    categories: []
+    categories: [],
 };
 
 export const GamesReducer = (state = initialState, action) => {
