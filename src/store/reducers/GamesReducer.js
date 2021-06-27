@@ -57,7 +57,49 @@ export const GamesReducer = (state = initialState, action) => {
                 categories,
                 allData: action.payload.data
             };
-            
+            case ACTION_TYPES.SET_FAVORITES_DATA:
+                console.log(action.payload)
+                const favData = action.payload.data;
+                // const favCategoryName = action.payload.category ? action.payload.category: 'All games';
+                // const [favCategory] = favData.categories.filter(cat => cat.nameKey === favCategoryName);
+
+                // get game details for chosen category
+                const favGames = action.payload.favorites.gameIds.map(id => {
+                    let [favGameData] = favData.games.filter(game => (
+                    game.id === id
+                    ))
+                    // favGameData.top = item.top
+                    return favGameData;
+                });
+
+                //keep large and small images separately
+                const favLargeGames = [];
+                const favSmallGames = [];
+                favGames.forEach(game => {
+                    if(game.top){
+                        favLargeGames.push(game);
+                    } else {
+                        favSmallGames.push(game);
+                    }
+                });
+
+                // get category names
+                const favCategories = favData.categories.map(cat => (
+                    {
+                        id: cat.id,
+                        nameKey: cat.nameKey
+                    }
+                ))
+
+            return {
+                is_loading: false,
+                games: {
+                    small: favSmallGames,
+                    large: favLargeGames,
+                },
+                categories: favCategories,
+                allData: action.payload.data
+            };
         default:
             return state
     }

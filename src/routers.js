@@ -4,8 +4,7 @@ import {AppRouter} from './components/AppRouter/AppRouter';
 import MainLayout from './components/layouts/MainLayout';
 import Home from './views/Home'
 import Category from './views/Category'
-// import Search from './views/Search'
-// import Favorites from './views/Favorites'
+
 
 export const Routers = _ => {
     return (
@@ -13,10 +12,10 @@ export const Routers = _ => {
             <AppRouter exact path='/' layout={MainLayout} component={Home}/>
 
             <AppRouter path='/category/:category' layout={MainLayout} component={Home}/>
-{/*             
-            <AppRouter path='/search/:search' layout={MainLayout} component={Search}/>
             
-            <AppRouter path='/favorites' layout={MainLayout} component={Favorites}/> */}
+            <AppRouter path='/search/:search?' layout={MainLayout} component={Home}/>
+            
+            <AppRouter path='/favorites' layout={MainLayout} component={Home}/>
         </Switch>
     )
 }

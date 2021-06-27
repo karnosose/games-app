@@ -7,7 +7,6 @@ export const initialState = {
 export const FavoritesReducer = (state = initialState, action) => {
     switch(action.type) {
         case ACTION_TYPES.SET_FAVORITES:
-            console.log('set: ', action.payload)
             return {
                 gameIds: action.payload
             };

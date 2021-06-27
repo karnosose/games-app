@@ -20,7 +20,6 @@ function Sidebar(props) {
 
   return (
     <Paper className={classes.root}>
-        {console.log(props)}
         <MenuList>
             <MenuItem className={classes.searchbar}>
                 <InputBase
