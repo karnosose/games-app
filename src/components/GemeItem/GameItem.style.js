@@ -50,8 +50,8 @@ export const useStyles = makeStyles({
         maxWidth:'25%',
         flexGrow:1,
         '@media only screen and (max-width:992px)': {
-            maxWidth: 'unset',
-            minWidth: '25%',
+            // maxWidth: 'unset',
+            // minWidth: '25%',
             flexGrow:1
         },
     },

@@ -65,8 +65,8 @@ export const useStyles = makeStyles({
         flexGrow:1,
         width: '-webkit-fill-available',
         '@media only screen and (max-width:992px)': {
-            maxWidth: 'unset',
-            minWidth: '25%',
+            // maxWidth: 'unset',
+            // minWidth: '25%',
             flexGrow:1
         },
     },
