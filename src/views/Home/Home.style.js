@@ -64,6 +64,7 @@ export const useStyles = makeStyles({
         position: 'relative',
         maxWidth:'25%',
         flexGrow:1,
+        width: '-webkit-fill-available',
         '@media only screen and (max-width:992px)': {
             maxWidth: 'unset',
             minWidth: '25%',
