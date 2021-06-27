@@ -24,7 +24,9 @@ export const useStyles = makeStyles({
         },
     },
     singlelarge: {
-        width:'25%'
+        width:'25%',
+        position: 'relative'
+
     },
     gameLargeImg: {
         width: '-webkit-fill-available',
@@ -56,9 +58,6 @@ export const useStyles = makeStyles({
         color: 'white',
         left:6,
         fontSize: 12
-    },
-    singlelarge: {
-        position: 'relative'
     },
     smallImgWrapper: {
         position: 'relative',
