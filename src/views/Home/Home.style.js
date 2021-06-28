@@ -24,7 +24,7 @@ export const useStyles = makeStyles({
         },
     },
     singlelarge: {
-        width:'25%',
+        // width:'25%',
         position: 'relative'
 
     },
